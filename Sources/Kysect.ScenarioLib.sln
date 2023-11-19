@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kysect.ScenarioLib.YamlPars
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kysect.ScenarioLib", "Kysect.ScenarioLib\Kysect.ScenarioLib.csproj", "{2290C9F2-FA43-441B-94F7-C46F7C564D38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kysect.ScenarioLib.Tests", "Kysect.ScenarioLib.Tests\Kysect.ScenarioLib.Tests.csproj", "{5900A610-7500-492B-95B0-D632CB7A2B33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2290C9F2-FA43-441B-94F7-C46F7C564D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2290C9F2-FA43-441B-94F7-C46F7C564D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2290C9F2-FA43-441B-94F7-C46F7C564D38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5900A610-7500-492B-95B0-D632CB7A2B33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5900A610-7500-492B-95B0-D632CB7A2B33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5900A610-7500-492B-95B0-D632CB7A2B33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5900A610-7500-492B-95B0-D632CB7A2B33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
