@@ -9,6 +9,8 @@ namespace Kysect.ScenarioLib;
 
 public class ScenarioStepReflectionParser : IScenarioStepParser
 {
+    private static readonly ReflectionJsonInstanceCreator _instanceCreator = ReflectionJsonInstanceCreator.Create();
+
     private readonly Dictionary<string, Type> _scenarioSteps;
 
     public ScenarioStepReflectionParser(Dictionary<string, Type> scenarioSteps)
@@ -26,7 +28,7 @@ public class ScenarioStepReflectionParser : IScenarioStepParser
 
         foreach (Type scenarioStep in scenarioSteps)
         {
-            ScenarioStepAttribute scenarioStepAttribute = attributeFinder.GetAttributeFromType<ScenarioStepAttribute>(scenarioStep);
+            var scenarioStepAttribute = attributeFinder.GetAttributeFromType<ScenarioStepAttribute>(scenarioStep);
             result.Add(scenarioStepAttribute.ScenarioName, scenarioStep);
         }
 
@@ -38,7 +40,7 @@ public class ScenarioStepReflectionParser : IScenarioStepParser
         if (!_scenarioSteps.TryGetValue(scenarioStepArguments.Name, out Type? handlerType))
             throw new ArgumentException("Cannot find scenario with name " + scenarioStepArguments.Name);
 
-        object scenarioStep = ReflectionJsonInstanceCreator.Create().Create(handlerType, scenarioStepArguments.Parameters);
+        object scenarioStep = _instanceCreator.Create(handlerType, scenarioStepArguments.Parameters);
         return scenarioStep.To<IScenarioStep>();
     }
 }
