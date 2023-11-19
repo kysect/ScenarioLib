@@ -16,6 +16,8 @@ public class ScenarioStepReflectionHandler : IScenarioStepHandler
 
     public static ScenarioStepReflectionHandler Create(IServiceProvider serviceProvider, params Assembly[] assemblies)
     {
+        serviceProvider.ThrowIfNull();
+
         var executors = new Dictionary<Type, ScenarioStepExecutorReflectionDecorator>();
 
         foreach (Type type in AssemblyReflectionTraverser.GetAllImplementationOf(assemblies, ScenarioStepExecutorType))
@@ -42,6 +44,8 @@ public class ScenarioStepReflectionHandler : IScenarioStepHandler
 
     public void Handle(IScenarioStep scenarioStep)
     {
+        scenarioStep.ThrowIfNull();
+
         if (!_scenarioSteps.TryGetValue(scenarioStep.GetType(), out ScenarioStepExecutorReflectionDecorator? handler))
             throw new ArgumentException($"Cannot find handler for {scenarioStep.GetType().FullName}");
 

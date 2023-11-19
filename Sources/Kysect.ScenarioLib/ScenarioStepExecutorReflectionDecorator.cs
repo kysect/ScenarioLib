@@ -1,4 +1,5 @@
-﻿using Kysect.CommonLib.Reflection;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Kysect.CommonLib.Reflection;
 using Kysect.ScenarioLib.Abstractions;
 using System;
 using System.Reflection;
@@ -14,6 +15,8 @@ public class ScenarioStepExecutorReflectionDecorator
 
     public ScenarioStepExecutorReflectionDecorator(IScenarioStepExecutor executor)
     {
+        executor.ThrowIfNull();
+
         Type executorType = executor.GetType();
         MethodInfo? executeMethod = executorType.GetMethod(ExecuteMethodName);
 

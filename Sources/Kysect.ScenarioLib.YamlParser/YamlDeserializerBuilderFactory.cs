@@ -2,7 +2,7 @@
 
 namespace Kysect.ScenarioLib.YamlParser;
 
-public class YamlDeserializerBuilderFactory
+public static class YamlDeserializerBuilderFactory
 {
     public static IDeserializer Create()
     {

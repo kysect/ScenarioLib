@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using System;
 using System.Collections.Generic;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
@@ -8,27 +9,32 @@ namespace Kysect.ScenarioLib.YamlParser;
 
 public class KeyValuePairNodeDeserializer : INodeDeserializer
 {
-    public bool Deserialize(IParser parser, Type expectedType, Func<IParser, Type, object?> nestedObjectDeserializer, out object? value)
+    public bool Deserialize(IParser reader, Type expectedType, Func<IParser, Type, object?> nestedObjectDeserializer, out object? value)
     {
+        reader.ThrowIfNull();
+        expectedType.ThrowIfNull();
+        nestedObjectDeserializer.ThrowIfNull();
+
+
         if (expectedType.IsGenericType && expectedType.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
         {
-            parser.Consume<MappingStart>();
+            reader.Consume<MappingStart>();
 
             var pairArgs = expectedType.GetGenericArguments();
 
             object? key = null;
             object? val = null;
 
-            if (parser.Accept<Scalar>(out _))
-                key = nestedObjectDeserializer(parser, pairArgs[0]);
+            if (reader.Accept<Scalar>(out _))
+                key = nestedObjectDeserializer(reader, pairArgs[0]);
 
-            if (parser.Accept<Scalar>(out _))
-                val = nestedObjectDeserializer(parser, pairArgs[1]);
+            if (reader.Accept<Scalar>(out _))
+                val = nestedObjectDeserializer(reader, pairArgs[1]);
 
             value = Activator.CreateInstance(expectedType, key, val);
 
 
-            parser.Consume<MappingEnd>();
+            reader.Consume<MappingEnd>();
             return true;
         }
 

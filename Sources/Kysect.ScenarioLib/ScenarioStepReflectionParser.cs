@@ -37,6 +37,8 @@ public class ScenarioStepReflectionParser : IScenarioStepParser
 
     public IScenarioStep ParseScenarioStep(ScenarioStepArguments scenarioStepArguments)
     {
+        scenarioStepArguments.ThrowIfNull();
+
         if (!_scenarioSteps.TryGetValue(scenarioStepArguments.Name, out Type? handlerType))
             throw new ArgumentException("Cannot find scenario with name " + scenarioStepArguments.Name);
 
