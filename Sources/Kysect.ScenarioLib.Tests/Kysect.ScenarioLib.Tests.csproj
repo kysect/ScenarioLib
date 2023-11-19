@@ -1,28 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
-    <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
-  </PropertyGroup>
+		<IsPackable>false</IsPackable>
+		<IsTestProject>true</IsTestProject>
+		<NoWarn>1701;1702;CA1707;CS1591</NoWarn>
 
-  <ItemGroup>
-    <PackageReference Include="FluentAssertions" />
-    <PackageReference Include="Kysect.CommonLib.DependencyInjection" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="NUnit" />
-    <PackageReference Include="NUnit3TestAdapter" />
-    <PackageReference Include="NUnit.Analyzers" />
-    <PackageReference Include="coverlet.collector" />
-  </ItemGroup>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Kysect.ScenarioLib.YamlParser\Kysect.ScenarioLib.YamlParser.csproj" />
-    <ProjectReference Include="..\Kysect.ScenarioLib\Kysect.ScenarioLib.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="FluentAssertions" />
+		<PackageReference Include="Kysect.CommonLib.DependencyInjection" />
+		<PackageReference Include="Kysect.Editorconfig" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" />
+		<PackageReference Include="NUnit" />
+		<PackageReference Include="NUnit3TestAdapter" />
+		<PackageReference Include="NUnit.Analyzers" />
+		<PackageReference Include="coverlet.collector" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Kysect.ScenarioLib.YamlParser\Kysect.ScenarioLib.YamlParser.csproj" />
+		<ProjectReference Include="..\Kysect.ScenarioLib\Kysect.ScenarioLib.csproj" />
+	</ItemGroup>
 
 </Project>
