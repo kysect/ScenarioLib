@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Kysect.CommonLib" Version="0.1.10" />
+    <PackageReference Include="Kysect.CommonLib" />
   </ItemGroup>
 
   <ItemGroup>
