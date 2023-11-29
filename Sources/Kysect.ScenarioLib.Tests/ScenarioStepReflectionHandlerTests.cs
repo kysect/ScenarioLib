@@ -17,6 +17,6 @@ public class ScenarioStepReflectionHandlerTests
         ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 
         var scenarioStepReflectionHandler = ScenarioStepReflectionHandler.Create(serviceProvider, TestConstants.CurrentAssembly);
-        scenarioStepReflectionHandler.Handle(new FirstScenarioStepHandler.Arguments("Some name"));
+        scenarioStepReflectionHandler.Handle(new ScenarioContext(), new FirstScenarioStepHandler.Arguments("Some name"));
     }
 }

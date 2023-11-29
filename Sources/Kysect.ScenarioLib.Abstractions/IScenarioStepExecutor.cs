@@ -6,5 +6,5 @@ public interface IScenarioStepExecutor
 
 public interface IScenarioStepExecutor<T> : IScenarioStepExecutor where T : IScenarioStep
 {
-    void Execute(T request);
+    void Execute(ScenarioContext context, T request);
 }

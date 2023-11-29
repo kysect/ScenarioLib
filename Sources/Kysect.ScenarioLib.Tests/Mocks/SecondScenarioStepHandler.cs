@@ -15,7 +15,7 @@ public class SecondScenarioStepHandler : IScenarioStepExecutor<SecondScenarioSte
         }
     }
 
-    public void Execute(Arguments request)
+    public void Execute(ScenarioContext context, Arguments request)
     {
     }
 }
