@@ -24,8 +24,8 @@ public class ScenarioStepExecutorReflectionDecorator
         _executeMethod = executeMethod ?? throw new ReflectionException($"Cannot get method {executeMethod} from type {executorType}");
     }
 
-    public void Execute(IScenarioStep scenarioStep)
+    public void Execute(ScenarioContext context, IScenarioStep scenarioStep)
     {
-        _executeMethod.Invoke(_executor, new object[] { scenarioStep });
+        _executeMethod.Invoke(_executor, new object[] { context, scenarioStep });
     }
 }

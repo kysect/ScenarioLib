@@ -42,13 +42,13 @@ public class ScenarioStepReflectionHandler : IScenarioStepHandler
         _scenarioSteps = scenarioSteps;
     }
 
-    public void Handle(IScenarioStep scenarioStep)
+    public void Handle(ScenarioContext scenarioContext, IScenarioStep scenarioStep)
     {
         scenarioStep.ThrowIfNull();
 
         if (!_scenarioSteps.TryGetValue(scenarioStep.GetType(), out ScenarioStepExecutorReflectionDecorator? handler))
             throw new ArgumentException($"Cannot find handler for {scenarioStep.GetType().FullName}");
 
-        handler.Execute(scenarioStep);
+        handler.Execute(scenarioContext, scenarioStep);
     }
 }

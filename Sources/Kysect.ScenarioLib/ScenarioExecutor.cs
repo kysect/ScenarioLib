@@ -43,7 +43,7 @@ public class ScenarioExecutor
         foreach (IScenarioStep scenarioStep in steps)
         {
             _logger.LogInformation($"Execute step {scenarioStep.GetType().Name}");
-            _scenarioStepHandler.Handle(scenarioStep);
+            _scenarioStepHandler.Handle(new ScenarioContext(), scenarioStep);
         }
     }
 }
