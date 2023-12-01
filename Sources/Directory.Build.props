@@ -1,6 +1,11 @@
 <Project>
-  <PropertyGroup>
-    <LangVersion>11.0</LangVersion>
+    <PropertyGroup>
+    <Authors>Kysect</Authors>
+    <Company>Kysect</Company>
+
+    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
