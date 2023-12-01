@@ -2,5 +2,5 @@
 
 public class ScenarioContext
 {
-    public object? Data { get; }
+    public object? Data { get; set; }
 }
