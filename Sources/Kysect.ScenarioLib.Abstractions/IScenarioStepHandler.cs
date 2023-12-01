@@ -2,5 +2,5 @@
 
 public interface IScenarioStepHandler
 {
-    void Handle(IScenarioStep scenarioStep);
+    void Handle(ScenarioContext scenarioContext, IScenarioStep scenarioStep);
 }

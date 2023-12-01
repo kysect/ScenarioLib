@@ -15,7 +15,7 @@ public class ScenarioWithArrayStepHandler : IScenarioStepExecutor<ScenarioWithAr
         }
     }
 
-    public void Execute(Arguments request)
+    public void Execute(ScenarioContext context, Arguments request)
     {
     }
 }
