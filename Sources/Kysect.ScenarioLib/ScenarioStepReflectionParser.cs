@@ -4,18 +4,27 @@ using Kysect.ScenarioLib.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace Kysect.ScenarioLib;
 
 public class ScenarioStepReflectionParser : IScenarioStepParser
 {
-    private static readonly ReflectionJsonInstanceCreator _instanceCreator = ReflectionJsonInstanceCreator.Create();
+    private readonly ReflectionJsonInstanceCreator _instanceCreator;
 
     private readonly Dictionary<string, Type> _scenarioSteps;
 
     public ScenarioStepReflectionParser(Dictionary<string, Type> scenarioSteps)
     {
         _scenarioSteps = scenarioSteps;
+        var jsonSerializerOptions = new JsonSerializerOptions()
+        {
+            NumberHandling = JsonNumberHandling.AllowReadingFromString
+        };
+
+        jsonSerializerOptions.Converters.Add(BooleanConverter.Instance);
+        _instanceCreator = new ReflectionJsonInstanceCreator(jsonSerializerOptions);
     }
 
     public static ScenarioStepReflectionParser Create(params Assembly[] assemblies)
