@@ -16,9 +16,16 @@ public class YamlScenarioSourceCodeParser : IScenarioSourceCodeParser
 
     public IReadOnlyCollection<ScenarioStepArguments> Parse(string content)
     {
-        var result = _deserializer
+        List<ScenarioStepArguments> result = _deserializer
             .Deserialize<List<ScenarioStepArguments>>(content)
             .ToList();
+
+        foreach (ScenarioStepArguments scenarioStepArguments in result)
+        {
+            // KB: it can be null
+            if (scenarioStepArguments.Parameters is null)
+                scenarioStepArguments.Parameters = new Dictionary<string, object>();
+        }
 
         return result;
     }

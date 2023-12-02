@@ -74,4 +74,20 @@ public class YamlScenarioSourceCodeParserTests
         steps.ElementAt(0).Should().BeOfType<ScenarioWithBoolStepHandler.Arguments>();
         steps.ElementAt(0).To<ScenarioWithBoolStepHandler.Arguments>().Value.Should().BeTrue();
     }
+
+    [Test]
+    public void Parse_WithoutArguments_ParseWithoutError()
+    {
+        const string content = """
+                               - Name: Scenario.WithoutArguments
+                                 Parameters:
+                               """;
+
+        IReadOnlyCollection<ScenarioStepArguments> scenarioStepArguments = _yamlScenarioSourceReader.Parse(content);
+        IReadOnlyCollection<IScenarioStep> steps = scenarioStepArguments.Select(_scenarioStepParser.ParseScenarioStep).ToList();
+
+        steps.Should().HaveCount(1);
+        steps.ElementAt(0).Should().BeOfType<ScenarioWithoutArgumentsStepHandler.Arguments>();
+        steps.ElementAt(0).To<ScenarioWithoutArgumentsStepHandler.Arguments>().Should().NotBeNull();
+    }
 }
