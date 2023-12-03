@@ -90,4 +90,24 @@ public class YamlScenarioSourceCodeParserTests
         steps.ElementAt(0).Should().BeOfType<ScenarioWithoutArgumentsStepHandler.Arguments>();
         steps.ElementAt(0).To<ScenarioWithoutArgumentsStepHandler.Arguments>().Should().NotBeNull();
     }
+
+    [Test]
+    public void Parse_WithDictionaryArguments_ParseWithoutError()
+    {
+        const string content = """
+                               - Name: Scenario.WithDictionaryArguments
+                                 Parameters:
+                                   Values:
+                                     Key: Value
+                               """;
+
+        IReadOnlyCollection<ScenarioStepArguments> scenarioStepArguments = _yamlScenarioSourceReader.Parse(content);
+        IReadOnlyCollection<IScenarioStep> steps = scenarioStepArguments.Select(_scenarioStepParser.ParseScenarioStep).ToList();
+
+        steps.Should().HaveCount(1);
+        steps.ElementAt(0).Should().BeOfType<ScenarioWithDictionaryArgumentsStepHandler.Arguments>();
+        Dictionary<string, string> values = steps.ElementAt(0).To<ScenarioWithDictionaryArgumentsStepHandler.Arguments>().Values;
+        values.Should().HaveCount(1);
+        values.Single().Should().Be(new KeyValuePair<string, string>("Key", "Value"));
+    }
 }
