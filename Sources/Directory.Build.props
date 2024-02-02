@@ -1,13 +1,43 @@
 <Project>
+  <!-- Default project values -->
   <PropertyGroup>
     <Authors>Kysect</Authors>
     <Company>Kysect</Company>
-    <Version>0.1.4</Version>
+    <Copyright>Copyright (c) Kysect 2024</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
 
-    <UseArtifactsOutput>true</UseArtifactsOutput>
+  <!-- Specific project values -->
+  <PropertyGroup>
+    <RepositoryUrl>https://github.com/kysect/ScenarioLib</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/kysect/ScenarioLib</PackageProjectUrl>
+    <Version>0.1.4</Version>
+  </PropertyGroup>
+
+  <!-- Code configuration -->
+  <PropertyGroup>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>disable</ImplicitUsings>
+    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <DebugType>portable</DebugType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Kysect.Editorconfig" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="$(Configuration) == 'Release'">
+    <PackageIcon>Kysect-logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+
+  <ItemGroup Condition="$(Configuration) == 'Release'">
+    <None Include="$(SolutionDir)..\Images\Kysect-logo.png" Pack="true" PackagePath="\" />
+    <None Include="$(SolutionDir)..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
 </Project>

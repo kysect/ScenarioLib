@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Kysect.ScenarioLib.Abstractions;
+﻿namespace Kysect.ScenarioLib.Abstractions;
 
 [AttributeUsage(AttributeTargets.Class)]
 public sealed class ScenarioStepAttribute : Attribute

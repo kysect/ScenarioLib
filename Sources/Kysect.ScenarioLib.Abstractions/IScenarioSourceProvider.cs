@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Kysect.ScenarioLib.Abstractions;
+﻿namespace Kysect.ScenarioLib.Abstractions;
 
 public interface IScenarioSourceProvider
 {

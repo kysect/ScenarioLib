@@ -1,26 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
 
-	<ItemGroup>
-	  <None Include="..\..\README.md">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Kysect.CommonLib" />
+    <PackageReference Include="YamlDotNet" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Kysect.CommonLib" />
-		<PackageReference Include="Kysect.Editorconfig" />
-		<PackageReference Include="YamlDotNet" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\Kysect.ScenarioLib.Abstractions\Kysect.ScenarioLib.Abstractions.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kysect.ScenarioLib.Abstractions\Kysect.ScenarioLib.Abstractions.csproj" />
+  </ItemGroup>
 
 </Project>

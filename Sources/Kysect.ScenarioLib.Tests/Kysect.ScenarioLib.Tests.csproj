@@ -1,34 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
 
-		<IsPackable>false</IsPackable>
-		<IsTestProject>true</IsTestProject>
-		<NoWarn>1701;1702;CA1707;CS1591</NoWarn>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <NoWarn>1701;1702;CA1707;CS1591</NoWarn>
 
-	</PropertyGroup>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="FluentAssertions" />
-		<PackageReference Include="Kysect.CommonLib.DependencyInjection" />
-		<PackageReference Include="Kysect.Editorconfig" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" />
-		<PackageReference Include="NUnit" />
-		<PackageReference Include="NUnit3TestAdapter" />
-		<PackageReference Include="NUnit.Analyzers">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="coverlet.collector" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="Kysect.CommonLib.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="NUnit" />
+    <PackageReference Include="NUnit3TestAdapter" />
+    <PackageReference Include="NUnit.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\Kysect.ScenarioLib.YamlParser\Kysect.ScenarioLib.YamlParser.csproj" />
-		<ProjectReference Include="..\Kysect.ScenarioLib\Kysect.ScenarioLib.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kysect.ScenarioLib.YamlParser\Kysect.ScenarioLib.YamlParser.csproj" />
+    <ProjectReference Include="..\Kysect.ScenarioLib\Kysect.ScenarioLib.csproj" />
+  </ItemGroup>
 
 </Project>
