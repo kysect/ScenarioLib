@@ -3,13 +3,12 @@ using Kysect.CommonLib.BaseTypes.Extensions;
 using Kysect.ScenarioLib.Abstractions;
 using Kysect.ScenarioLib.Tests.Mocks;
 using Kysect.ScenarioLib.Tests.Tools;
-using NUnit.Framework;
 
 namespace Kysect.ScenarioLib.Tests;
 
 public class ScenarioStepReflectionParserTests
 {
-    [Test]
+    [Fact]
     public void Create_ForTestAssembly_ReturnInitializedInstance()
     {
         var scenarioStepReflectionParser = ScenarioStepReflectionParser.Create(TestConstants.CurrentAssembly);

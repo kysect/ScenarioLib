@@ -3,13 +3,12 @@ using Kysect.ScenarioLib.Abstractions;
 using Kysect.ScenarioLib.Tests.Mocks;
 using Kysect.ScenarioLib.Tests.Tools;
 using Microsoft.Extensions.DependencyInjection;
-using NUnit.Framework;
 
 namespace Kysect.ScenarioLib.Tests;
 
 public class ScenarioStepReflectionHandlerTests
 {
-    [Test]
+    [Fact]
     public void Create_ForTestAssembly_ReturnInitializedHandler()
     {
         var serviceCollection = new ServiceCollection();

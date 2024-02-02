@@ -4,7 +4,6 @@ using Kysect.ScenarioLib.Abstractions;
 using Kysect.ScenarioLib.Tests.Mocks;
 using Kysect.ScenarioLib.Tests.Tools;
 using Kysect.ScenarioLib.YamlParser;
-using NUnit.Framework;
 
 namespace Kysect.ScenarioLib.Tests;
 
@@ -19,7 +18,7 @@ public class YamlScenarioSourceCodeParserTests
         _scenarioStepParser = ScenarioStepReflectionParser.Create(TestConstants.CurrentAssembly);
     }
 
-    [Test]
+    [Fact]
     public void Parse_ForScenarioWithTwoStep_ReturnBothStep()
     {
         const string content = """
@@ -41,7 +40,7 @@ public class YamlScenarioSourceCodeParserTests
         steps.ElementAt(1).To<SecondScenarioStepHandler.Arguments>().Name.Should().Be("Other name");
     }
 
-    [Test]
+    [Fact]
     public void Parse_ArgumentWithArray_ParseArray()
     {
         const string content = """
@@ -58,7 +57,7 @@ public class YamlScenarioSourceCodeParserTests
         steps.ElementAt(0).To<ScenarioWithArrayStepHandler.Arguments>().Values.Should().BeEquivalentTo("first", "second");
     }
 
-    [Test]
+    [Fact]
     public void Parse_BoolArgument_ParseWithoutError()
     {
         const string content = """
@@ -75,7 +74,7 @@ public class YamlScenarioSourceCodeParserTests
         steps.ElementAt(0).To<ScenarioWithBoolStepHandler.Arguments>().Value.Should().BeTrue();
     }
 
-    [Test]
+    [Fact]
     public void Parse_WithoutArguments_ParseWithoutError()
     {
         const string content = """
@@ -91,7 +90,7 @@ public class YamlScenarioSourceCodeParserTests
         steps.ElementAt(0).To<ScenarioWithoutArgumentsStepHandler.Arguments>().Should().NotBeNull();
     }
 
-    [Test]
+    [Fact]
     public void Parse_WithDictionaryArguments_ParseWithoutError()
     {
         const string content = """
