@@ -1,27 +1,31 @@
 ﻿using Kysect.ScenarioLib.Abstractions;
+using System.IO.Abstractions;
 
 namespace Kysect.ScenarioLib;
 
 public class ScenarioSourceProvider : IScenarioSourceProvider
 {
+    private readonly IFileSystem _fileSystem;
     private readonly string _directory;
 
-    public ScenarioSourceProvider(string directory)
+    public ScenarioSourceProvider(IFileSystem fileSystem, string directory)
     {
+        _fileSystem = fileSystem;
         _directory = directory;
     }
 
     public IReadOnlyCollection<string> GetScenarioNames()
     {
-        return Directory
+        return _fileSystem
+            .Directory
             .EnumerateFiles(_directory)
-            .Select(f => new FileInfo(f).Name)
+            .Select(f => _fileSystem.FileInfo.New(f).Name)
             .ToList();
     }
 
     public string GetScenarioSourceCode(string scenarioName)
     {
-        string fullPath = Path.Combine(_directory, scenarioName);
-        return File.ReadAllText(fullPath);
+        string fullPath = _fileSystem.Path.Combine(_directory, scenarioName);
+        return _fileSystem.File.ReadAllText(fullPath);
     }
 }
