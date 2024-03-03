@@ -7,13 +7,13 @@ using System.Text.Json;
 
 namespace Kysect.ScenarioLib;
 
-public class ScenarioStepReflectionParser : IScenarioStepParser
+public class ScenarioContentStepReflectionDeserializer : IScenarioContentStepDeserializer
 {
     private readonly ReflectionJsonInstanceCreator _instanceCreator;
 
     private readonly Dictionary<string, Type> _scenarioSteps;
 
-    public ScenarioStepReflectionParser(Dictionary<string, Type> scenarioSteps)
+    public ScenarioContentStepReflectionDeserializer(Dictionary<string, Type> scenarioSteps)
     {
         _scenarioSteps = scenarioSteps;
         var jsonSerializerOptions = new JsonSerializerOptions()
@@ -25,7 +25,7 @@ public class ScenarioStepReflectionParser : IScenarioStepParser
         _instanceCreator = new ReflectionJsonInstanceCreator(jsonSerializerOptions);
     }
 
-    public static ScenarioStepReflectionParser Create(params Assembly[] assemblies)
+    public static ScenarioContentStepReflectionDeserializer Create(params Assembly[] assemblies)
     {
         var attributeFinder = new ReflectionAttributeFinder();
 
@@ -39,17 +39,17 @@ public class ScenarioStepReflectionParser : IScenarioStepParser
             result.Add(scenarioStepAttribute.ScenarioName, scenarioStep);
         }
 
-        return new ScenarioStepReflectionParser(result);
+        return new ScenarioContentStepReflectionDeserializer(result);
     }
 
-    public IScenarioStep ParseScenarioStep(ScenarioStepArguments scenarioStepArguments)
+    public IScenarioStep ParseScenarioStep(ScenarioStepArguments arguments)
     {
-        scenarioStepArguments.ThrowIfNull();
+        arguments.ThrowIfNull();
 
-        if (!_scenarioSteps.TryGetValue(scenarioStepArguments.Name, out Type? handlerType))
-            throw new ArgumentException("Cannot find scenario with name " + scenarioStepArguments.Name);
+        if (!_scenarioSteps.TryGetValue(arguments.Name, out Type? handlerType))
+            throw new ArgumentException("Cannot find scenario with name " + arguments.Name);
 
-        object scenarioStep = _instanceCreator.Create(handlerType, scenarioStepArguments.Parameters);
+        object scenarioStep = _instanceCreator.Create(handlerType, arguments.Parameters);
         return scenarioStep.To<IScenarioStep>();
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Kysect.ScenarioLib.Abstractions;
 
-public interface IScenarioSourceCodeParser
+public interface IScenarioContentParser
 {
     IReadOnlyCollection<ScenarioStepArguments> Parse(string content);
 }

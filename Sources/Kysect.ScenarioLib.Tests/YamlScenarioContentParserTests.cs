@@ -7,15 +7,14 @@ using Kysect.ScenarioLib.YamlParser;
 
 namespace Kysect.ScenarioLib.Tests;
 
-public class YamlScenarioSourceCodeParserTests
+public class YamlScenarioContentParserTests
 {
-    private readonly YamlScenarioSourceCodeParser _yamlScenarioSourceReader;
-    private readonly IScenarioStepParser _scenarioStepParser;
-
-    public YamlScenarioSourceCodeParserTests()
+    private readonly IScenarioContentDeserializer _contentDeserializer;
+    public YamlScenarioContentParserTests()
     {
-        _yamlScenarioSourceReader = new YamlScenarioSourceCodeParser();
-        _scenarioStepParser = ScenarioStepReflectionParser.Create(TestConstants.CurrentAssembly);
+        var yamlScenarioSourceParser = new YamlScenarioContentParser();
+        IScenarioContentStepDeserializer contentStepDeserializer = ScenarioContentStepReflectionDeserializer.Create(TestConstants.CurrentAssembly);
+        _contentDeserializer = new ScenarioContentDeserializer(yamlScenarioSourceParser, contentStepDeserializer);
     }
 
     [Fact]
@@ -30,8 +29,7 @@ public class YamlScenarioSourceCodeParserTests
                                     Name: Other name
                                """;
 
-        IReadOnlyCollection<ScenarioStepArguments> scenarioStepArguments = _yamlScenarioSourceReader.Parse(content);
-        IReadOnlyCollection<IScenarioStep> steps = scenarioStepArguments.Select(_scenarioStepParser.ParseScenarioStep).ToList();
+        IReadOnlyCollection<IScenarioStep> steps = _contentDeserializer.Deserialize(content);
 
         steps.Should().HaveCount(2);
         steps.ElementAt(0).Should().BeOfType<FirstScenarioStepHandler.Arguments>();
@@ -49,8 +47,7 @@ public class YamlScenarioSourceCodeParserTests
                                     Values: ["first", "second"]
                                """;
 
-        IReadOnlyCollection<ScenarioStepArguments> scenarioStepArguments = _yamlScenarioSourceReader.Parse(content);
-        IReadOnlyCollection<IScenarioStep> steps = scenarioStepArguments.Select(_scenarioStepParser.ParseScenarioStep).ToList();
+        IReadOnlyCollection<IScenarioStep> steps = _contentDeserializer.Deserialize(content);
 
         steps.Should().HaveCount(1);
         steps.ElementAt(0).Should().BeOfType<ScenarioWithArrayStepHandler.Arguments>();
@@ -66,8 +63,7 @@ public class YamlScenarioSourceCodeParserTests
                                     Value: true
                                """;
 
-        IReadOnlyCollection<ScenarioStepArguments> scenarioStepArguments = _yamlScenarioSourceReader.Parse(content);
-        IReadOnlyCollection<IScenarioStep> steps = scenarioStepArguments.Select(_scenarioStepParser.ParseScenarioStep).ToList();
+        IReadOnlyCollection<IScenarioStep> steps = _contentDeserializer.Deserialize(content);
 
         steps.Should().HaveCount(1);
         steps.ElementAt(0).Should().BeOfType<ScenarioWithBoolStepHandler.Arguments>();
@@ -82,8 +78,7 @@ public class YamlScenarioSourceCodeParserTests
                                  Parameters:
                                """;
 
-        IReadOnlyCollection<ScenarioStepArguments> scenarioStepArguments = _yamlScenarioSourceReader.Parse(content);
-        IReadOnlyCollection<IScenarioStep> steps = scenarioStepArguments.Select(_scenarioStepParser.ParseScenarioStep).ToList();
+        IReadOnlyCollection<IScenarioStep> steps = _contentDeserializer.Deserialize(content);
 
         steps.Should().HaveCount(1);
         steps.ElementAt(0).Should().BeOfType<ScenarioWithoutArgumentsStepHandler.Arguments>();
@@ -100,8 +95,7 @@ public class YamlScenarioSourceCodeParserTests
                                      Key: Value
                                """;
 
-        IReadOnlyCollection<ScenarioStepArguments> scenarioStepArguments = _yamlScenarioSourceReader.Parse(content);
-        IReadOnlyCollection<IScenarioStep> steps = scenarioStepArguments.Select(_scenarioStepParser.ParseScenarioStep).ToList();
+        IReadOnlyCollection<IScenarioStep> steps = _contentDeserializer.Deserialize(content);
 
         steps.Should().HaveCount(1);
         steps.ElementAt(0).Should().BeOfType<ScenarioWithDictionaryArgumentsStepHandler.Arguments>();

@@ -6,12 +6,12 @@ using Kysect.ScenarioLib.Tests.Tools;
 
 namespace Kysect.ScenarioLib.Tests;
 
-public class ScenarioStepReflectionParserTests
+public class ScenarioContentStepReflectionDeserializerTests
 {
     [Fact]
     public void Create_ForTestAssembly_ReturnInitializedInstance()
     {
-        var scenarioStepReflectionParser = ScenarioStepReflectionParser.Create(TestConstants.CurrentAssembly);
+        var scenarioStepReflectionParser = ScenarioContentStepReflectionDeserializer.Create(TestConstants.CurrentAssembly);
 
         var scenarioStepArguments = new ScenarioStepArguments("First.Scenario", new Dictionary<string, object> { { "Name", "Value" } });
         IScenarioStep scenarioStep = scenarioStepReflectionParser.ParseScenarioStep(scenarioStepArguments);

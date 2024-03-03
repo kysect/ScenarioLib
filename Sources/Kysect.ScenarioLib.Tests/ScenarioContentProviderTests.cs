@@ -3,16 +3,16 @@ using System.IO.Abstractions.TestingHelpers;
 
 namespace Kysect.ScenarioLib.Tests;
 
-public class ScenarioSourceProviderTests
+public class ScenarioContentProviderTests
 {
     private readonly MockFileSystem _mockFileSystem;
-    private readonly ScenarioSourceProvider _sourceProvider;
+    private readonly ScenarioContentProvider _contentProvider;
 
-    public ScenarioSourceProviderTests()
+    public ScenarioContentProviderTests()
     {
         _mockFileSystem = new MockFileSystem();
         string fullPath = _mockFileSystem.Path.GetFullPath(".");
-        _sourceProvider = new ScenarioSourceProvider(_mockFileSystem, fullPath);
+        _contentProvider = new ScenarioContentProvider(_mockFileSystem, fullPath);
     }
 
     [Fact]
@@ -21,7 +21,7 @@ public class ScenarioSourceProviderTests
         _mockFileSystem.AddFile("first.yaml", new MockFileData("Some text"));
         _mockFileSystem.AddFile("second.yaml", new MockFileData("Some text"));
 
-        IReadOnlyCollection<string> scenarios = _sourceProvider.GetScenarioNames();
+        IReadOnlyCollection<string> scenarios = _contentProvider.GetScenarioNames();
 
         scenarios.Should().BeEquivalentTo(["first.yaml", "second.yaml"]);
     }
@@ -31,7 +31,7 @@ public class ScenarioSourceProviderTests
     {
         _mockFileSystem.AddFile("first.yaml", new MockFileData("Some text"));
 
-        string scenarioSourceCode = _sourceProvider.GetScenarioSourceCode("first.yaml");
+        string scenarioSourceCode = _contentProvider.GetScenarioSourceCode("first.yaml");
 
         scenarioSourceCode.Should().Be("Some text");
     }

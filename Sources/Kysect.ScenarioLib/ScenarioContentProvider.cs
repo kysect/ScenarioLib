@@ -3,12 +3,12 @@ using System.IO.Abstractions;
 
 namespace Kysect.ScenarioLib;
 
-public class ScenarioSourceProvider : IScenarioSourceProvider
+public class ScenarioContentProvider : IScenarioContentProvider
 {
     private readonly IFileSystem _fileSystem;
     private readonly string _directory;
 
-    public ScenarioSourceProvider(IFileSystem fileSystem, string directory)
+    public ScenarioContentProvider(IFileSystem fileSystem, string directory)
     {
         _fileSystem = fileSystem;
         _directory = directory;
