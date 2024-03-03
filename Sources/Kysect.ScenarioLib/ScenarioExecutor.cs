@@ -6,33 +6,29 @@ namespace Kysect.ScenarioLib;
 
 public class ScenarioExecutor
 {
-    private readonly IScenarioSourceProvider _scenarioProvider;
-    private readonly IScenarioSourceCodeParser _scenarioSourceCodeParser;
-    private readonly IScenarioStepParser _scenarioStepParser;
+    private readonly IScenarioContentProvider _contentProvider;
+    private readonly IScenarioContentDeserializer _contentDeserializer;
     private readonly IScenarioStepHandler _scenarioStepHandler;
     private readonly ILogger _logger;
 
     public ScenarioExecutor(
-        IScenarioSourceProvider sourceProvider,
-        IScenarioSourceCodeParser sourceCodeParser,
-        IScenarioStepParser stepParser,
+        IScenarioContentProvider contentProvider,
         IScenarioStepHandler scenarioStepHandler,
-        ILogger logger)
+        ILogger logger,
+        IScenarioContentDeserializer scenarioContentDeserializer)
     {
-        _scenarioProvider = sourceProvider;
-        _scenarioSourceCodeParser = sourceCodeParser;
-        _scenarioStepParser = stepParser;
-        _logger = logger;
+        _contentProvider = contentProvider;
+        _contentDeserializer = scenarioContentDeserializer;
         _scenarioStepHandler = scenarioStepHandler;
+        _logger = logger;
     }
 
     public void Execute(string scenarioName)
     {
         _logger.LogInformation($"Run scenario {scenarioName}");
 
-        string scenarioContent = _scenarioProvider.GetScenarioSourceCode(scenarioName);
-        IReadOnlyCollection<ScenarioStepArguments> scenarioStepNodes = _scenarioSourceCodeParser.Parse(scenarioContent);
-        IReadOnlyCollection<IScenarioStep> steps = scenarioStepNodes.Select(_scenarioStepParser.ParseScenarioStep).ToList();
+        string scenarioContent = _contentProvider.GetScenarioSourceCode(scenarioName);
+        IReadOnlyCollection<IScenarioStep> steps = _contentDeserializer.Deserialize(scenarioContent);
 
         _logger.LogInformation("Steps:");
         foreach (IScenarioStep scenarioStep in steps)

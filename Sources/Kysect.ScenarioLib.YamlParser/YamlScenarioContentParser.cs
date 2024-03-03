@@ -3,11 +3,11 @@ using YamlDotNet.Serialization;
 
 namespace Kysect.ScenarioLib.YamlParser;
 
-public class YamlScenarioSourceCodeParser : IScenarioSourceCodeParser
+public class YamlScenarioContentParser : IScenarioContentParser
 {
     private readonly IDeserializer _deserializer;
 
-    public YamlScenarioSourceCodeParser()
+    public YamlScenarioContentParser()
     {
         _deserializer = YamlDeserializerBuilderFactory.Create();
     }

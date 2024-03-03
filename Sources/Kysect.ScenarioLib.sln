@@ -5,11 +5,17 @@ VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.ScenarioLib.Abstractions", "Kysect.ScenarioLib.Abstractions\Kysect.ScenarioLib.Abstractions.csproj", "{99340498-D3D6-4D52-8EF3-27242719CD0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kysect.ScenarioLib.YamlParser", "Kysect.ScenarioLib.YamlParser\Kysect.ScenarioLib.YamlParser.csproj", "{C261A85F-89C0-4D01-BA88-AA8F72F5BA98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.ScenarioLib.YamlParser", "Kysect.ScenarioLib.YamlParser\Kysect.ScenarioLib.YamlParser.csproj", "{C261A85F-89C0-4D01-BA88-AA8F72F5BA98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kysect.ScenarioLib", "Kysect.ScenarioLib\Kysect.ScenarioLib.csproj", "{2290C9F2-FA43-441B-94F7-C46F7C564D38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.ScenarioLib", "Kysect.ScenarioLib\Kysect.ScenarioLib.csproj", "{2290C9F2-FA43-441B-94F7-C46F7C564D38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kysect.ScenarioLib.Tests", "Kysect.ScenarioLib.Tests\Kysect.ScenarioLib.Tests.csproj", "{5900A610-7500-492B-95B0-D632CB7A2B33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.ScenarioLib.Tests", "Kysect.ScenarioLib.Tests\Kysect.ScenarioLib.Tests.csproj", "{5900A610-7500-492B-95B0-D632CB7A2B33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1BE4C1B8-016A-4BB6-8396-5E2777AF428E}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
