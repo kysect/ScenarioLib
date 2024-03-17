@@ -1,6 +1,7 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
 using Kysect.CommonLib.Reflection;
 using Kysect.ScenarioLib.Abstractions;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using System.Text.Json;
@@ -50,6 +51,8 @@ public class ScenarioContentStepReflectionDeserializer : IScenarioContentStepDes
             throw new ArgumentException("Cannot find scenario with name " + arguments.Name);
 
         object scenarioStep = _instanceCreator.Create(handlerType, arguments.Parameters);
+        Validator.ValidateObject(scenarioStep, new ValidationContext(scenarioStep, new Dictionary<object, object>()));
+
         return scenarioStep.To<IScenarioStep>();
     }
 }
