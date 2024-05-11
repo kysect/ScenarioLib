@@ -21,5 +21,6 @@
     <PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
     <PackageVersion Include="NUnit.Analyzers" Version="4.0.1" />
     <PackageVersion Include="coverlet.collector" Version="6.0.1" />
+    <PackageVersion Include="MinVer" Version="5.0.0" />
   </ItemGroup>
 </Project>
