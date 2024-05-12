@@ -3,7 +3,7 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Kysect.Editorconfig" Version="1.1.8" />
+    <PackageVersion Include="Kysect.SolutionDefaults" Version="0.1.2" />
     <PackageVersion Include="Kysect.CommonLib" Version="0.1.19" />
     <PackageVersion Include="Kysect.CommonLib.DependencyInjection" Version="0.1.19" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
