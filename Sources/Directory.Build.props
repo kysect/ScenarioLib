@@ -2,6 +2,7 @@
   <PropertyGroup>
     <RepositoryUrl>https://github.com/kysect/ScenarioLib</RepositoryUrl>
     <PackageProjectUrl>https://github.com/kysect/ScenarioLib</PackageProjectUrl>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
   </PropertyGroup>
 
   <!-- Code configuration -->
@@ -23,5 +24,4 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-
 </Project>
